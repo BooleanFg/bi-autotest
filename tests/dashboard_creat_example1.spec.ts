@@ -6,20 +6,32 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('creat dashboard', async ({ page, ai, aiQuery, aiAssert }) => {
-  // 👀 输入关键字，执行搜索
-  await ai('搜索输入框输入"playwright"关键字，并回车');
+  // 👀 添加图表
+  await aiTap('点击左侧"添加图表"按钮');
   await page.waitForTimeout(3000);
 
-  // 👀 找到列表里耳机相关的信息
-  const items = await aiQuery(
-    'string[], 搜索结果列表中包含"playwright"相关的标题'
-  );
+  await aiTap('点击左侧"分析表"按钮');
+  await page.waitForTimeout(3000);
 
-  console.log("search result", items);
-  console.log("search result number", items?.length);
-  // 断言大于 1 条搜索结果
-  expect(items?.length).toBeGreaterThan(1);
+  await aiTap('点击右侧"省份"按钮');
+  await page.waitForTimeout(3000);
+
+  await aiTap('点击右侧"订单量"按钮');
+  await page.waitForTimeout(3000);
+
+  await aiTap('点击右下角"查询"按钮');
+  await page.waitForTimeout(7000);
+
+//   // 👀 找到列表里耳机相关的信息
+//   const items = await aiQuery(
+//     'string[], 搜索结果列表中包含"playwright"相关的标题'
+//   );
+//
+//   console.log("search result", items);
+//   console.log("search result number", items?.length);
+//   // 断言大于 1 条搜索结果
+//   expect(items?.length).toBeGreaterThan(1);
 
   // 👀 用 AI 断言
-  await aiAssert('检查搜索结果列表第一条标题是否包含"playwright"字符串');
+  await aiAssert('看板中新增了一个包含省份和订单量的分析表1，并且有多条数据');
 });
