@@ -27,7 +27,7 @@ test('creat dashboard', async ({ page, ai, aiQuery, aiAssert }) => {
   await ai('点击左侧"明细表"按钮');
   await page.waitForTimeout(3000);
 
-  await aiTap("跳过按钮");
+  await ai('点击"跳过"按钮');
   await page.waitForTimeout(3000);
 
   await ai('点击右侧"省份"按钮');
