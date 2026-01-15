@@ -36,6 +36,14 @@ test('creat dashboard_折线图', async ({ page, ai, aiQuery, aiAssert }) => {
   await ai('点击右下角"查询"按钮');
   await page.waitForTimeout(7000);
 
-  // 👀 用 AI 断言
+  // 创建折线图断言
   await aiAssert('页面新增了一个折线图1');
+
+  await ai('点击右上角"样式"按钮');
+
+  await ai('打开“数据标签”开关和“图例”开关');
+
+  // 配置样式断言
+  await aiAssert('折线图1发生以下变化：1.折线上显示数据；2.折线图上方显示订单金额的图例');
+
 });
